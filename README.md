@@ -2,10 +2,11 @@
 **Author**: Madhavv Arul  
 **Roll Number**: 22011102053  
 
-## 📚 Overview
-This project is a C++ implementation of various **classical cryptographic algorithms**, built as part of the Semester 6 Cryptography CIA. It demonstrates the fundamental working principles of historical ciphers that laid the foundation for modern cryptography.
+## Overview
+This repository is a C++ implementation of various **classical cryptographic algorithms**, built as part of the Semester 6 Cryptography CIA. 
+It demonstrates the fundamental working principles of historical ciphers that laid the foundation for modern cryptography.
 
-## 🧠 Implemented Algorithms
+## Implemented Algorithms
 
 | Cipher Name           | Description                                                                 |
 |-----------------------|-----------------------------------------------------------------------------|
@@ -22,10 +23,3 @@ This project is a C++ implementation of various **classical cryptographic algori
 | **Rail Fence Cipher** | A transposition cipher that writes text in a zigzag pattern.                |
 | **Route Cipher**      | Writes the message into a grid and reads it using a specific route.         |
 | **Myszkowski Cipher** | Transposition cipher using keys with repeated characters.                   |
-
-## 🛠️ How to Compile & Run
-
-### Compile using Clang++ (Recommended on macOS):
-```bash
-clang++ -std=c++17 <cipher_file>.cpp -o <cipher_binary>
-./<cipher_binary>
