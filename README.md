@@ -1,4 +1,4 @@
-# 🔐 Cryptography CIA – Semester 6  
+# Cryptography CIA – Semester 6  
 **Author**: Madhavv Arul  
 **Roll Number**: 22011102053  
 
