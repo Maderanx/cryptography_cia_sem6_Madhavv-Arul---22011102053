@@ -4,7 +4,6 @@ using namespace std;
 
 string generateAutokey(string text, string key) {
     string autokey = key;
-    // Append the plaintext to create the full key
     for (int i = 0; i < text.length() - key.length(); i++) {
         autokey += text[i];
     }
@@ -35,7 +34,6 @@ string decrypt(string text, string initialKey) {
         char decrypted;
         if (isupper(text[i])) {
             decrypted = char((text[i] - toupper(key[i]) + 26) % 26 + 'A');
-            // Add the decrypted character to the key for next iterations
             if (i >= initialKey.length()) {
                 key += decrypted;
             }
