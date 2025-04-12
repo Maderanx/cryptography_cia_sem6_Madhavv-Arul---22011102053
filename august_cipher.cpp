@@ -3,12 +3,11 @@
 #include <vector>
 using namespace std;
 
-// Function to generate the August tableau (similar to Vigenère but with shift based on position)
+// Function to generate the August tableau
 vector<vector<char>> generateTableau() {
     vector<vector<char>> tableau(26, vector<char>(26));
     for (int i = 0; i < 26; i++) {
         for (int j = 0; j < 26; j++) {
-            // Each row is shifted by position value
             tableau[i][j] = 'A' + ((j + i * i) % 26);
         }
     }
@@ -26,11 +25,9 @@ string encrypt(string text, string key) {
             char k = toupper(key[i % keyLen]);
             int row = k - 'A';
             int col = c - 'A';
-            
-            // Use the tableau for encryption
+    
             char encrypted = tableau[row][col];
             
-            // Preserve original case
             result += (isupper(text[i])) ? encrypted : tolower(encrypted);
         } else {
             result += text[i];
@@ -49,8 +46,7 @@ string decrypt(string text, string key) {
             char c = toupper(text[i]);
             char k = toupper(key[i % keyLen]);
             int row = k - 'A';
-            
-            // Find the column in the tableau that gives us our encrypted character
+
             int col = 0;
             for (int j = 0; j < 26; j++) {
                 if (tableau[row][j] == c) {
@@ -59,10 +55,8 @@ string decrypt(string text, string key) {
                 }
             }
             
-            // Convert column back to original character
             char decrypted = 'A' + col;
-            
-            // Preserve original case
+
             result += (isupper(text[i])) ? decrypted : tolower(decrypted);
         } else {
             result += text[i];
