@@ -20,7 +20,7 @@ string encrypt(string text) {
 
 // For Atbash cipher, encryption and decryption are the same
 string decrypt(string text) {
-    return encrypt(text);  // Atbash is its own inverse
+    return encrypt(text); 
 }
 
 int main() {
