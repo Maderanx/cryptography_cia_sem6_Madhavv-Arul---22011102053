@@ -4,13 +4,11 @@
 #include <stdexcept>
 using namespace std;
 
-// Function to calculate determinant of 2x2 matrix
 int determinant(const vector<vector<int>>& key) {
     int det = (key[0][0] * key[1][1] - key[0][1] * key[1][0]) % 26;
     return det < 0 ? det + 26 : det;
 }
 
-// Function to calculate GCD
 int gcd(int a, int b) {
     while (b) {
         int temp = b;
@@ -20,30 +18,25 @@ int gcd(int a, int b) {
     return a;
 }
 
-// Function to calculate modular multiplicative inverse
 int modInverse(int a, int m = 26) {
     a = ((a % m) + m) % m;
     for (int x = 1; x < m; x++)
         if ((a * x) % m == 1)
             return x;
-    return -1;  // Return -1 if inverse doesn't exist
+    return -1;  
 }
 
-// Function to validate key matrix
 bool isValidKey(const vector<vector<int>>& key) {
-    // Check if all elements are within valid range
     for (const auto& row : key) {
         for (int val : row) {
             if (val < 0 || val >= 26) return false;
         }
     }
     
-    // Check if determinant is valid (coprime with 26)
     int det = determinant(key);
     return gcd(det, 26) == 1;
 }
 
-// Function to get adjugate matrix
 vector<vector<int>> adjugate(const vector<vector<int>>& key) {
     vector<vector<int>> adj(2, vector<int>(2));
     adj[0][0] = key[1][1];
@@ -57,16 +50,14 @@ string encrypt(string text, const vector<vector<int>>& key) {
     if (!isValidKey(key)) {
         throw runtime_error("Invalid key matrix! Determinant must be coprime with 26.");
     }
-    
-    // Remove non-alphabetic characters and convert to uppercase
+
     string cleaned;
     for (char c : text) {
         if (isalpha(c)) {
             cleaned += toupper(c);
         }
     }
-    
-    // Pad with 'X' if necessary
+
     if (cleaned.length() % 2 != 0) {
         cleaned += 'X';
     }
