@@ -7,7 +7,6 @@
 #include <stdexcept>
 using namespace std;
 
-// Function to clean and validate input text
 string preprocessText(const string& text) {
     string cleaned;
     for (char c : text) {
@@ -21,7 +20,6 @@ string preprocessText(const string& text) {
     return cleaned;
 }
 
-// Function to validate and process key
 string preprocessKey(const string& key) {
     string cleaned;
     for (char c : key) {
@@ -35,7 +33,6 @@ string preprocessKey(const string& key) {
     return cleaned;
 }
 
-// Function to create a grid for encryption
 vector<vector<char>> createGrid(const string& text, const string& key) {
     int cols = key.length();
     int rows = (text.length() + cols - 1) / cols;
@@ -50,7 +47,6 @@ vector<vector<char>> createGrid(const string& text, const string& key) {
     return grid;
 }
 
-// Function to print the grid (for visualization)
 void printGrid(const vector<vector<char>>& grid, const string& key) {
     cout << "\nEncryption Grid:\n";
     cout << "  ";
@@ -74,18 +70,16 @@ void printGrid(const vector<vector<char>>& grid, const string& key) {
 }
 
 string encrypt(string text, string key) {
-    // Preprocess input
     text = preprocessText(text);
     key = preprocessKey(key);
     
     vector<vector<char>> grid = createGrid(text, key);
-    printGrid(grid, key); // Show the grid for visualization
+    printGrid(grid, key); 
     
     int rows = grid.size();
     int cols = key.length();
     string result;
     
-    // Create ordered indices based on key
     vector<pair<char, int>> keyOrder;
     for (int i = 0; i < key.length(); i++) {
         keyOrder.push_back({key[i], i});
@@ -93,7 +87,6 @@ string encrypt(string text, string key) {
     sort(keyOrder.begin(), keyOrder.end());
     
     cout << "Reading order: ";
-    // Read columns in sorted key order
     for (const auto& k : keyOrder) {
         cout << k.first << " ";
         for (int row = 0; row < rows; row++) {
@@ -108,21 +101,18 @@ string encrypt(string text, string key) {
 }
 
 string decrypt(string text, string key) {
-    // Preprocess input
     text = preprocessText(text);
     key = preprocessKey(key);
     
     int cols = key.length();
     int rows = (text.length() + cols - 1) / cols;
-    
-    // Create ordered indices based on key
+
     vector<pair<char, int>> keyOrder;
     for (int i = 0; i < key.length(); i++) {
         keyOrder.push_back({key[i], i});
     }
     sort(keyOrder.begin(), keyOrder.end());
-    
-    // Calculate the number of characters in each column
+
     vector<int> colLengths(cols);
     int fullRows = text.length() / cols;
     int remainingChars = text.length() % cols;
@@ -132,13 +122,12 @@ string decrypt(string text, string key) {
         if (i < remainingChars) colLengths[i]++;
     }
     
-    // Create mapping from sorted position to original position
+    
     vector<int> positionMap(cols);
     for (int i = 0; i < cols; i++) {
         positionMap[keyOrder[i].second] = i;
     }
     
-    // Read the input text into columns
     vector<vector<char>> columns(cols);
     int pos = 0;
     for (int i = 0; i < cols; i++) {
@@ -147,7 +136,6 @@ string decrypt(string text, string key) {
         }
     }
     
-    // Reconstruct the original text
     string result;
     for (int row = 0; row < rows; row++) {
         for (int col = 0; col < cols; col++) {
