@@ -8,7 +8,6 @@ using namespace std;
 
 class NgramOperations {
 private:
-    // Store frequency analysis results
     map<string, int> ngramFreq;
     int totalNgrams;
     
@@ -23,7 +22,6 @@ private:
     }
 
 public:
-    // Generate all n-grams from text
     vector<string> generateNgrams(string text, int n) {
         vector<string> ngrams;
         text = preprocessText(text);
@@ -34,7 +32,6 @@ public:
         return ngrams;
     }
     
-    // Analyze frequency of n-grams
     void analyzeFrequency(string text, int n) {
         ngramFreq.clear();
         totalNgrams = 0;
@@ -47,7 +44,6 @@ public:
         }
     }
     
-    // Get frequency analysis results
     void printFrequencyAnalysis() {
         vector<pair<string, int>> freq(ngramFreq.begin(), ngramFreq.end());
         sort(freq.begin(), freq.end(),
@@ -66,7 +62,6 @@ public:
         }
     }
     
-    // Find repeating sequences
     vector<pair<string, vector<int>>> findRepeatingSequences(string text, int n) {
         text = preprocessText(text);
         map<string, vector<int>> positions;
@@ -90,8 +85,7 @@ public:
         
         return results;
     }
-    
-    // Calculate Index of Coincidence (IoC)
+
     double calculateIoC(string text) {
         text = preprocessText(text);
         vector<int> freqs(26, 0);
@@ -110,7 +104,6 @@ public:
     }
 };
 
-// Simple substitution encryption using n-gram analysis for key generation
 string encrypt(string text, string key) {
     string result;
     for (char c : text) {
