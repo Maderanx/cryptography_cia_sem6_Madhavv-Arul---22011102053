@@ -5,14 +5,12 @@ using namespace std;
 
 vector<int> processKey(string keyStr, int textLength) {
     vector<int> key;
-    // Convert string of numbers to vector of integers
     for (char c : keyStr) {
         if (isdigit(c)) {
             key.push_back(c - '0');
         }
     }
-    
-    // Repeat key if necessary
+
     vector<int> repeatedKey;
     for (int i = 0; i < textLength; i++) {
         repeatedKey.push_back(key[i % key.size()]);
