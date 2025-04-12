@@ -14,7 +14,6 @@ string encrypt(string text, string key) {
     string result = "";
     for (int i = 0; i < text.length(); i++) {
         if (isupper(text[i])) {
-            // Beaufort formula: Ei = (Yi - Pi + 26) % 26
             result += char(('Z' - (text[i] - key[i]) % 26));
         }
         else if (islower(text[i])) {
@@ -27,7 +26,6 @@ string encrypt(string text, string key) {
     return result;
 }
 
-// In Beaufort cipher, encryption and decryption are the same operation
 string decrypt(string text, string key) {
     return encrypt(text, key);
 }
