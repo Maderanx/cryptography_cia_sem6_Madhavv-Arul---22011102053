@@ -8,7 +8,6 @@ string encrypt(string text, int rails) {
     int rail = 0;
     bool down = true;
     
-    // Build the rail fence pattern
     for (char c : text) {
         fence[rail] += c;
         
@@ -28,7 +27,6 @@ string encrypt(string text, int rails) {
         }
     }
     
-    // Combine all rails
     string result;
     for (const string& s : fence) {
         result += s;
@@ -43,7 +41,6 @@ string decrypt(string text, int rails) {
     int rail = 0;
     bool down = true;
     
-    // Mark positions in the fence
     for (int i = 0; i < text.length(); i++) {
         counts[rail]++;
         
@@ -62,16 +59,14 @@ string decrypt(string text, int rails) {
             }
         }
     }
-    
-    // Fill the fence with text
+
     int pos = 0;
     for (int i = 0; i < rails; i++) {
         for (int j = 0; j < counts[i]; j++) {
             fence[i][j] = text[pos++];
         }
     }
-    
-    // Read off the fence pattern
+
     string result;
     rail = 0;
     down = true;
